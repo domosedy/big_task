@@ -1,16 +1,18 @@
 import requests
 
 
-def get_picture(url, spn, x, y, map_file):
+def get_picture(spn, x, y, map_file):
+    url = 'http://static-maps.yandex.ru/1.x/'
+    spn = str(spn) + ',' + str(spn)
     params = {
-        'll': str(x) + ',' + str(y)
+        'll': str(x) + ',' + str(y),
         'spn': spn,
         'l': 'sat',
         'apikey': '40d1649f-0493-4b70-98ba-98533de7710b'
     }
 
     response = requests.get(url, params=params)
-    with open(map_file, 'w') as f:
+    with open(map_file, 'wb') as f:
         f.write(response.content)
 
 
