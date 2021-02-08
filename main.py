@@ -23,3 +23,6 @@ def get_coords(name_of_object):
     }
 
     response = requests.get(url, params=params).json()
+    toponym = response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+    x, y = [float(i) for i in toponym["Point"]['pos'].split()]
+    return x, y
